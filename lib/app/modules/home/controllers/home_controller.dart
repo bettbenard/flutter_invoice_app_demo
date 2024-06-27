@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:invoice_app/app/data/models/model.dart';
@@ -38,8 +36,6 @@ class HomeController extends GetxController {
   final quaCtl = TextEditingController();
   final addressCtl = TextEditingController();
   final dueDateCtl = TextEditingController();
-
-  final _random = Random.secure();
 
   final _totalVat = 0.0.obs;
   final _subTotals = 0.0.obs;
@@ -121,7 +117,7 @@ class HomeController extends GetxController {
 
   /// Generate a unique invoice number in the range of 100k & 1M
   int generateInvoiceNumber() {
-    int id = 100000 + _random.nextInt(1000000 - 100000);
+    int id = utils.generateRandomNumber();
     if (invoiceRepo.keys.contains(id)) {
       return generateInvoiceNumber();
     }
@@ -228,6 +224,8 @@ class HomeController extends GetxController {
   }
 
   bool get isNew => _isNew.value;
+
+  set isNew(bool value) => _isNew.value = value;
 
   Invoice? get invoice => _invoice.value;
 

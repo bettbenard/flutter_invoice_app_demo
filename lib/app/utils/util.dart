@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:invoice_app/app/data/models/model.dart';
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
@@ -5,6 +7,7 @@ import 'package:intl/intl.dart';
 const currency = 'KSh';
 const uuid = Uuid();
 final ymd = DateFormat.yMd();
+final random = Random.secure();
 
 String get uid => uuid.v4();
 
@@ -13,6 +16,11 @@ String formatDate(DateTime dt) => ymd.format(dt);
 DateTime dtFromStr(String str) {
   var dts = str.split('/').map((e) => int.parse(e)).toList();
   return DateTime(dts[2], dts[0], dts[1]);
+}
+
+// Generate a unique number in the range of 100k & 1M
+int generateRandomNumber() {
+  return 100000 + random.nextInt(1000000 - 100000);
 }
 
 // VAT Amount

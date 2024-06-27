@@ -25,7 +25,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.VIEWER,
-      page: () => const ViewerView(),
+      page: () => ViewerView(),
       binding: HomeBinding(),
     ),
   ];
